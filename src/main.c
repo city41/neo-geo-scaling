@@ -49,13 +49,52 @@ int main() {
 
     fix_print(12, 28, "Scaling sandbox");
 
-    control(10, 1);
+    s16 fpy = 13;
 
-    naiveScale(30, 2, SCALE_Y_HALF);
-    withTransparentBottomRow(50, 3, SCALE_Y_HALF);
+    // exporing the graphical artifacting beyond the scaled tiles
+    basicScale(16, 10, FULL_SCALE);
+    fix_print(2, fpy, "0");
 
-    naiveScale(50, 3, SCALE_Y_QUARTER);
-    withTransparentBottomRow(70, 4, SCALE_Y_QUARTER);
+    withTransparentBottomRow(48, 10, FULL_SCALE);
+    fix_print(6, fpy, "1");
+
+    basicScale(80, 10, SCALE_Y_HALF);
+    fix_print(10, fpy, "2");
+
+    withTransparentBottomRow(112, 10, SCALE_Y_HALF);
+    fix_print(14, fpy, "3");
+
+    basicScale(144, 10, SCALE_Y_QUARTER);
+    fix_print(18, fpy, "4");
+
+    basicScaleTileZeroToEnd(176, 10, SCALE_Y_QUARTER);
+    fix_print(22, fpy, "5");
+
+    withTransparentBottomRow(208, 10, SCALE_Y_QUARTER);
+    fix_print(26, fpy, "6");
+
+    withTransparentBottomRowTileZeroToEnd(240, 10, SCALE_Y_QUARTER);
+    fix_print(30, fpy, "7");
+
+    // exploring what the "last line is transparent" can accomplish
+    fpy = 26;
+    withTransparentBottomRow(16, 122, FULL_SCALE);
+    fix_print(2, fpy, "8");
+
+    withTransparentBottomRow(48, 122, (0xF << 8) | 200);
+    fix_print(6, fpy, "9");
+
+    withTransparentBottomRow(80, 122, (0xF << 8) | 90);
+    fix_print(10, fpy, "10");
+
+    basicScale(112, 122, FULL_SCALE);
+    fix_print(14, fpy, "11");
+
+    basicScale(144, 122, (0xF << 8) | 200);
+    fix_print(18, fpy, "12");
+
+    basicScale(176, 122, (0xF << 8) | 90);
+    fix_print(22, fpy, "13");
 
     for (;;) { }
 
