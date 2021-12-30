@@ -2,6 +2,12 @@
 
 A small experiment exploring what graphical artifacts occur when scaling a sprite vertically.
 
+## Have any input?
+
+Please add it in [discussions](https://github.com/city41/neo-geo-scaling/discussions)
+
+## The Setup
+
 Here are the Character Tiles that were used. The last tile has its bottom row set to color zero. Magenta in this image gets translated to index zero (ie, transparent)
 
 ![character tiles](./resources/tiles.png)
