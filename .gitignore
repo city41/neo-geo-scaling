@@ -43,3 +43,7 @@ gngeo_log.txt
 
 # scripts (typescript)
 node_modules
+
+# mame stuff
+cfg/
+nvram/
