@@ -17,13 +17,14 @@ void control() {
     const s16 x = 10;
     const s16 y = 10;
     const s8 height = 4;
+    const u8 palette = 2;
 
     *REG_VRAMMOD = 1;
     *REG_VRAMADDR = ADDR_SCB1 + 1 * SCB1_SPRITE_ENTRY_SIZE;
 
     for (u8 ty = 0; ty < height; ++ty) {
         *REG_VRAMRW = ty;
-        *REG_VRAMRW = 0;
+        *REG_VRAMRW = (palette << 8);
     }
 
     // append tile zero to the end, which is blank

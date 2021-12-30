@@ -1,3 +1,4 @@
+#include "paletteDefs.h"
 #include "tests.h"
 #include <ngdevkit/neogeo.h>
 
@@ -6,12 +7,9 @@
 #define BROWN 0x6743
 #define MMAP_BACKDROP_COLOR_INDEX ((volatile u16*)0x401FFE)
 
-#define PALETTE_SIZE 2
-const u16 palette[PALETTE_SIZE] = { BLACK, WHITE };
-
-void init_palette() {
-    for (u8 i = 0; i < PALETTE_SIZE; ++i) {
-        MMAP_PALBANK1[i] = palette[i];
+void init_palettes() {
+    for (u8 i = 0; i < NUM_PALETTE_ENTRIES; ++i) {
+        MMAP_PALBANK1[i] = palettes[i];
     }
 }
 
@@ -32,7 +30,7 @@ void fix_print(u16 x, u16 y, const u8* text) {
 
     *REG_VRAMMOD = 32;
 
-    u8 palette = 0;
+    u8 palette = 1;
 
     while (*text) {
         u16 tileIndex = *text + 1;
@@ -44,12 +42,12 @@ void fix_print(u16 x, u16 y, const u8* text) {
 }
 
 int main() {
-    init_palette();
+    init_palettes();
     fix_clear();
 
     *MMAP_BACKDROP_COLOR_INDEX = BROWN;
 
-    fix_print(10, 14, "Hello Neo Geo!");
+    fix_print(12, 28, "Scaling sandbox");
 
     control();
 

@@ -1,5 +1,17 @@
 {
 	"romPathRoot": "../src/rom/202-",
+	"palettes": {
+		"codeEmit": [
+			{
+				"template": "../src/sromcromTemplates/paletteDefs.h.ejs",
+				"dest": "../src/paletteDefs.h"
+			},
+			{
+				"template": "../src/sromcromTemplates/paletteDefs.c.ejs",
+				"dest": "../src/paletteDefs.c"
+			}
+		]
+	},
 	"sromImages": {
 		"inputs": [
 			{
