@@ -117,11 +117,17 @@ Running on real hardware: AES with Neo SD Pro
 
 # Findings
 
-* GnGeo behaves differently from real hardware. Possibly enough to warrant attempting to patch GnGeo, as getting scaling correct currently requires running on real hardware often to ensure no unexpected graphical artifacts are left behind
+* GnGeo and MAME behave differently from real hardware. Possibly enough to warrant attempting to patch GnGeo, as getting scaling correct currently requires running on real hardware often to ensure no unexpected graphical artifacts are left behind
 
 * Best I can tell, setting the bottom row of a tile to be blank doesn't have any impact on graphical artifacts. This might be contrary to what is mentioned on [neogeodev's sprite shrinking page](https://wiki.neogeodev.org/index.php?title=Sprite_shrinking). However, it's possible the LSPC is looking at the last line of the tile specified in the 31st index? The second test where tile zero is blank does support that.
 
 * The only way I could fully get rid of all graphical artifacts is to fill the remainder of the sprite's tiles with a blank tile. In this case, I chose tile zero.
+
+# Issues Reported
+
+[gngeo issue started here](https://github.com/dciabrin/gngeo/issues/10)  
+
+[MAME issue brought up on Reddit here](https://www.reddit.com/r/MAME/comments/rs8us3/difference_between_neo_geo_hardware_and_mame/)
 
 # More TODO
 
