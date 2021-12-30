@@ -48,6 +48,14 @@ $(SROM_AND_CROM) srom_and_crom: rom
 $(PROM): $(ELF) | rom
 	$(M68KOBJCOPY) -O binary -S -R .comment $< $@ && dd if=$@ of=$@ conv=notrunc,swab
 
+neosd:
+	rm -f rom/*.bin && \
+	rm -f rom/output.* && \
+	neosdconv -i rom -o rom/scaling.neo -y 2021 -n scaling -g Other -m city41
+	
+tosd:
+	make neosd && cp rom/scaling.neo /media/matt/7473-D0EE/ && umount /media/matt/7473-D0EE
+
 clean:
 	rm -f *.png *.o *~ $(ELF) tmp.* rom/*.*
 

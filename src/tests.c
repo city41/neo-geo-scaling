@@ -22,7 +22,7 @@ void control(s16 x, s16 spriteIndex) {
     *REG_VRAMADDR = ADDR_SCB2 + spriteIndex;
 
     // set scale (horizontal and vertical)
-    *REG_VRAMRW = 0xfff;
+    *REG_VRAMRW = NO_SCALE;
 
     // TODO: if the sprite is sticky, x and y don't matter, should we skip them?
     // y position, height in tiles, whether it is sticky
@@ -31,7 +31,7 @@ void control(s16 x, s16 spriteIndex) {
     *REG_VRAMRW = TO_SCREEN_X(x) << 7;
 }
 
-void naiveScale(s16 x, s16 spriteIndex) {
+void naiveScale(s16 x, s16 spriteIndex, s16 scale) {
     const s16 y = 10;
     const s8 height = 4;
     const u8 palette = 2;
@@ -52,8 +52,7 @@ void naiveScale(s16 x, s16 spriteIndex) {
     *REG_VRAMMOD = SCB234_SIZE;
     *REG_VRAMADDR = ADDR_SCB2 + spriteIndex;
 
-    // set scale (horizontal and vertical)
-    *REG_VRAMRW = 0xfaa;
+    *REG_VRAMRW = scale;
 
     // TODO: if the sprite is sticky, x and y don't matter, should we skip them?
     // y position, height in tiles, whether it is sticky
@@ -62,7 +61,7 @@ void naiveScale(s16 x, s16 spriteIndex) {
     *REG_VRAMRW = TO_SCREEN_X(x) << 7;
 }
 
-void withTransparentBottomRow(s16 x, s16 spriteIndex) {
+void withTransparentBottomRow(s16 x, s16 spriteIndex, s16 scale) {
     const s16 y = 10;
     const s8 height = 3;
     const u8 palette = 2;
@@ -86,8 +85,7 @@ void withTransparentBottomRow(s16 x, s16 spriteIndex) {
     *REG_VRAMMOD = SCB234_SIZE;
     *REG_VRAMADDR = ADDR_SCB2 + spriteIndex;
 
-    // set scale (horizontal and vertical)
-    *REG_VRAMRW = 0xfaa;
+    *REG_VRAMRW = scale;
 
     // TODO: if the sprite is sticky, x and y don't matter, should we skip them?
     // y position, height in tiles, whether it is sticky

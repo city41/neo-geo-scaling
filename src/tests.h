@@ -13,6 +13,10 @@
 #define TO_SCREEN_Y(inputY) (-((inputY) + 496) - 32)
 #define TO_SCREEN_X(inputX) (inputX)
 
+#define NO_SCALE  0xFFF
+#define SCALE_Y_HALF 0xF80
+#define SCALE_Y_QUARTER 0xF40
+
 void control(s16 x, s16 spriteIndex);
-void naiveScale(s16 x, s16 spriteIndex);
-void withTransparentBottomRow(s16 x, s16 spriteIndex);
+void naiveScale(s16 x, s16 spriteIndex, s16 scale);
+void withTransparentBottomRow(s16 x, s16 spriteIndex, s16 scale);

@@ -49,9 +49,13 @@ int main() {
 
     fix_print(12, 28, "Scaling sandbox");
 
-    control(10, 0);
-    naiveScale(30, 1);
-    withTransparentBottomRow(50, 2);
+    control(10, 1);
+
+    naiveScale(30, 2, SCALE_Y_HALF);
+    withTransparentBottomRow(50, 3, SCALE_Y_HALF);
+
+    naiveScale(50, 3, SCALE_Y_QUARTER);
+    withTransparentBottomRow(70, 4, SCALE_Y_QUARTER);
 
     for (;;) { }
 
