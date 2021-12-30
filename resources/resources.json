@@ -7,5 +7,11 @@
 				"imageFile": "./fixFont.png"
 			}
 		]
+	},
+	"cromImages": {
+		"inputs": [{
+			"name": "tiles",
+			"imageFile": "./tiles.png"
+		}]
 	}
 }

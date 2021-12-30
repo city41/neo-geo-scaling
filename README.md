@@ -1,9 +1,3 @@
-# neo-geo-dev-book-game
+# neo-geo-scaling
 
-This is the companion game that goes along with my [Neo Geo development book](https://github.com/city41/neo-geo-dev-book). 
-
-Roughly speaking each branch here corresponds to a chapter in the book.
-
-## Status
-
-Just like the book this is very early stuff.
+Scaling sprites on the Neo Geo has several caveats. This is a small sample program with the goal of learning what all those caveats are.

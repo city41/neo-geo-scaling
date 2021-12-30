@@ -26,6 +26,7 @@ VROM=rom/202-v1.v1
 CROM1=rom/202-c1.c1
 CROM2=rom/202-c2.c2
 CROM=$(CROM1) $(CROM2)
+SROM_AND_CROM=$(SROM) $(CROM)
 GAMEROM=puzzledp
 CART=rom/$(GAMEROM).zip
 BIOS=rom/neogeo.zip

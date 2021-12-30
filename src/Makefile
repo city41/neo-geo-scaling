@@ -22,7 +22,7 @@ include ../Makefile.config
 include ../Makefile.common
 $(CART): $(PROM) $(CROM1) $(CROM2) $(SROM) $(VROM) $(MROM) | rom
 
-OBJS=main
+OBJS=main tests
 ELF=rom.elf
 
 $(ELF):	$(OBJS:%=%.o)
@@ -40,15 +40,8 @@ $(MROM): | rom
 $(VROM): | rom
 	dd if=/dev/zero bs=1024 count=512 of=$@
 
-# sprite ROM C1 C2: empty
-$(CROM1): rom
-	dd if=/dev/zero bs=1024 count=512 of=$@
-
-$(CROM2): rom
-	dd if=/dev/zero bs=1024 count=512 of=$@
-
 # fixed tile ROM: fonts from common assets
-$(SROM) srom: rom
+$(SROM_AND_CROM) srom_and_crom: rom
 	cd .. && sromcrom -i resources/resources.json
 
 # program ROM
