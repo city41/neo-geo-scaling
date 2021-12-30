@@ -1,5 +1,6 @@
 {
 	"romPathRoot": "../src/rom/202-",
+	"padCROMFilesTo": 2097152,
 	"palettes": {
 		"codeEmit": [
 			{
