@@ -117,7 +117,7 @@ Running on real hardware: AES with Neo SD Pro
 
 # Findings
 
-* GnGeo and MAME behave differently from real hardware. Possibly enough to warrant attempting to patch GnGeo, as getting scaling correct currently requires running on real hardware often to ensure no unexpected graphical artifacts are left behind
+* ~~GnGeo and MAME behave differently from real hardware. Possibly enough to warrant attempting to patch GnGeo, as getting scaling correct currently requires running on real hardware often to ensure no unexpected graphical artifacts are left behind~~ doh, this was due to not padding the C ROMs to a proper size. The NeoSD will load a tiny C ROM (in this case, 704 bytes due to there only being 11 tiles), and it looks like the remainder of the C ROM space is probably filled with `0xff`. Once I padded the C ROMs to a normal size, real hardware and the emulators matched each other.
 
 * Best I can tell, setting the bottom row of a tile to be blank doesn't have any impact on graphical artifacts. This might be contrary to what is mentioned on [neogeodev's sprite shrinking page](https://wiki.neogeodev.org/index.php?title=Sprite_shrinking). However, it's possible the LSPC is looking at the last line of the tile specified in the 31st index? The second test where tile zero is blank does support that.
 
