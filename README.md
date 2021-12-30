@@ -107,7 +107,7 @@ Running on the version of GnGeo included with [ngdevkit](https://github.com/dcia
 
 ![gngeo screenshot](./gngeo_blankTileZero.png)
 
-Running on Mame 0.231 (April 2021 release)
+Running on Mame (tried both 0.231 and 0.239, same results)
 
 ![mame screenshot](./mame_blankTileZero.png)
 
