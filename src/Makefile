@@ -51,7 +51,7 @@ $(PROM): $(ELF) | rom
 neosd:
 	rm -f rom/*.bin && \
 	rm -f rom/output.* && \
-	neosdconv -i rom -o rom/scaling.neo -y 2021 -n scaling -g Other -m city41
+	neosdconv -i rom -o rom/scaling.neo -y 2021 -n scaling -g Other -m city41 -# 45
 	
 tosd:
 	make neosd && cp rom/scaling.neo /media/matt/7473-D0EE/ && umount /media/matt/7473-D0EE
