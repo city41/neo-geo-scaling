@@ -103,7 +103,7 @@ Running on the version of GnGeo included with [ngdevkit](https://github.com/dcia
 
 Running on real hardware: AES with Neo SD Pro
 
-![real hardware screenshot](./realHardware_blankTileZero.jpg)
+![real hardware screenshot](./realHardware_blankTileZero1.jpg)
 
 # Findings
 
@@ -112,8 +112,6 @@ Running on real hardware: AES with Neo SD Pro
 * Best I can tell, setting the bottom row of a tile to be blank doesn't have any impact on graphical artifacts. This might be contrary to what is mentioned on [neogeodev's sprite shrinking page](https://wiki.neogeodev.org/index.php?title=Sprite_shrinking). However, it's possible the LSPC is looking at the last line of the tile specified in the 31st index? The second test where tile zero is blank does support that.
 
 * The only way I could fully get rid of all graphical artifacts is to fill the remainder of the sprite's tiles with a blank tile. In this case, I chose tile zero.
-
-* samples 5 and 7 appear to be using palette 2, but I wrote zero which should mean use tile index 0 and palette 0. This was unexpected.
 
 # More TODO
 
