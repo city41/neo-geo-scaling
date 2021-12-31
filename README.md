@@ -8,19 +8,25 @@ Please add it in [discussions](https://github.com/city41/neo-geo-scaling/discuss
 
 ## The Setup
 
-Here are the Character Tiles that were used. The last tile has its bottom row set to color zero. Magenta in this image gets translated to index zero (ie, transparent)
+A bunch of filler tiles were added to the front of the C ROM (magenta means color index 0, ie transparent)
+
+![filler tiles](./resources/filler.png)
+
+And here are the Character Tiles that were used. The last tile has its bottom row set to color zero. 
 
 ![character tiles](./resources/tiles.png)
 
-And how they are stored in the C ROM
+And how they all got stored in the C ROM
 
 ![screenshot of tile viewer](./tileViewer.png)
 
+Notice that tile at index 255 is a checkerboard pattern, that plays a role in the findings. You can also see that checkerboard in the filler.png above
+
 ## Results
 
-Running on the version of GnGeo included with [ngdevkit](https://github.com/dciabrin/ngdevkit)
+MAME 0.220
 
-![gngeo screenshot](./gngeo.png)
+![mame screenshot](./mame.png)
 
 Running on real hardware: AES with Neo SD Pro
 
@@ -29,110 +35,92 @@ Running on real hardware: AES with Neo SD Pro
 
 ### sample 0
 
-- character tiles 1 through 4
-- height set to 4
+- character tiles 1 through 17
+- height set to 17
 - scaling set to full size (0xFFF)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
+- character tiles 18 through 32 in the vram tilemap (scb1) untouched
 
 ### sample 1
 
-- character tiles 1 through 3 then the "transparent bottom line" tile
+- character tiles 1 through 4
 - height set to 4
-- scaling set to full size (0xFFF)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
+- scaling set to full half (0xF80)
+- character tiles 5 through 32 in the vram tilemap (scb1) untouched
 
 ### sample 2
 
-- character tiles 1 through 4
+- character tiles 1 through 3 then the "transparent bottom line" tile at 4
 - height set to 4
 - scaling set to half (0xF80)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
+- character tiles 5 through 32 in the vram tilemap (scb1) untouched
 
 ### sample 3
 
-- character tiles 1 through 3 then the "transparent bottom line" tile
+- character tiles 1 through 4
 - height set to 4
-- scaling set to half (0xF80)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
+- scaling set to one quarter (0xF40)
+- character tiles 5 through 32 in the vram tilemap (scb1) untouched
 
 ### sample 4
 
 - character tiles 1 through 4
 - height set to 4
 - scaling set to one quarter (0xF40)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
+- character tiles 5 through 32 set to the transparent tile
 
 ### sample 5
 
-- character tiles 1 through 4
+- character tiles 1 through 3 then the "transparent bottom line" tile at 4
 - height set to 4
 - scaling set to one quarter (0xF40)
-- character tiles 4 through 32 in the vram tilemap (scb1) set to tile index 0, palette 0
+- character tiles 5 through 32 set to the transparent tile
 
 ### sample 6
 
-- character tiles 1 through 3 then the "transparent bottom line" tile
-- height set to 4
-- scaling set to one quarter (0xF40)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
+- character tiles 1 through 16
+- height set to 16
+- scaling set to one half (0xF80)
+- character tiles 17 through 32 in the vram tilemap (scb1) untouched
 
 ### sample 7
 
-- character tiles 1 through 3 then the "transparent bottom line" tile
-- height set to 4
-- scaling set to one quarter (0xF40)
-- character tiles 4 through 32 in the vram tilemap (scb1) set to tile index 0, palette 0
+- character tiles 1 through 15 then the "transparent bottom line" tile at 16
+- height set to 16
+- scaling set to half (0xF80)
+- character tiles 17 through 32 set to the transparent tile
 
-### sample 8-10
+### sample 8
 
-- character tiles 1 through 3 then the "transparent bottom line" tile
-- height set to 4
-- scalings set to full, 0xFC8 (78%), 0xF5A (35%)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
+- character tiles 1 through 16 then the "transparent bottom line" tile at 17
+- height set to 17
+- scaling set to half (0xF80)
+- character tiles 18 through 32 in the vram tilemap (scb1) untouched
 
-### sample 11-14
+### sample 9
 
-- character tiles 1 through 4
-- height set to 4
-- scalings set to full, 0xFC8 (78%), 0xF5A (35%)
-- character tiles 4 through 32 in the vram tilemap (scb1) untouched
-
-## Results when character tile zero is fully blank
-
-These tests are identical to the above, except the tile at index 0 in the C ROM is now fully transparent instead of having a checkerboard pattern.
-
-![character tiles with zero being blank](./resources/tilesZeroTransparent.png)
-
-Running on the version of GnGeo included with [ngdevkit](https://github.com/dciabrin/ngdevkit)
-
-![gngeo screenshot](./gngeo_blankTileZero.png)
-
-Running on Mame (tried both 0.231 and 0.239, same results)
-
-![mame screenshot](./mame_blankTileZero.png)
-
-Running on real hardware: AES with Neo SD Pro
-
-![real hardware screenshot](./realHardware_blankTileZero1.jpg)
+- character tiles 1 through 24
+- height set to 24
+- scalings set to one quarter (0xF40)
+- character tiles 25 through 32 in the vram tilemap (scb1) untouched
 
 # Findings
 
-* ~~GnGeo and MAME behave differently from real hardware. Possibly enough to warrant attempting to patch GnGeo, as getting scaling correct currently requires running on real hardware often to ensure no unexpected graphical artifacts are left behind~~ doh, this was due to not padding the C ROMs to a proper size. The NeoSD will load a tiny C ROM (in this case, 704 bytes due to there only being 11 tiles), and it looks like the remainder of the C ROM space is probably filled with `0xff`. Once I padded the C ROMs to a normal size, real hardware and the emulators matched each other.
+## Tile 0xff fills in left over space for sprites shorter than 16
 
-* Best I can tell, setting the bottom row of a tile to be blank doesn't have any impact on graphical artifacts. This might be contrary to what is mentioned on [neogeodev's sprite shrinking page](https://wiki.neogeodev.org/index.php?title=Sprite_shrinking). However, it's possible the LSPC is looking at the last line of the tile specified in the 31st index? The second test where tile zero is blank does support that.
+When a sprite vertically scales down to be smaller than its height window, the remainder of that height window is filled with whatever tile is at position 255 (0xff) in the C ROM.
 
-* The only way I could fully get rid of all graphical artifacts is to fill the remainder of the sprite's tiles with a blank tile. In this case, I chose tile zero.
+In this case, the tile at 0xFF is the checkerboard pattern. Looking at various C ROMs of commercial Neo Geo games, the tile at 0xFF is very often blank. For example, here is League Bowling
 
-# Issues Reported
+![league bowling tile 255](./lbowlingTile255.png)
 
-[gngeo issue started here](https://github.com/dciabrin/gngeo/issues/10)  
+And here is Fatal Fury 3
 
-[MAME issue brought up on Reddit here](https://www.reddit.com/r/MAME/comments/rs8us3/difference_between_neo_geo_hardware_and_mame/)
+![fatal fure 3 tile 255](./ff3Tile255.png)
 
-# More TODO
+## Sprites of height 16 use the last row of the last tile to fill in remaining space
 
-* try this on MAME
-* try this on other revisions of real hardware, do different versions of the LSPC do different things?
-* does writing zeroes to the entire tilemap in VRAM before doing anything with sprites also get rid of the artifacting (assuming the tile at index zero is blank)?
-* does the sticky bit haved any unexpected impact?
-* does horizontal scaling have any unexpected impact?
+If a sprite is exactly 16 tiles high, then the last row of the last tile appears to be used to fill in the remaining space of the window. As far as I can tell, this only works when the sprite's height is set to 16.
+
+## Sprites of height greater than 16 do not scale properly
+
+My experiments here -- as well as the game I am writing -- always have scaling issues if a sprite is taller than 16 tiles. It seems once tile 16 is hit, that tile is "smeared" down the screen.

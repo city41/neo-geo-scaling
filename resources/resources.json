@@ -22,9 +22,15 @@
 		]
 	},
 	"cromImages": {
-		"inputs": [{
-			"name": "tiles",
-			"imageFile": "./tiles.png"
-		}]
+		"inputs": [
+			{
+				"name": "filler",
+				"imageFile": "./filler.png"
+			},
+			{
+				"name": "tiles",
+				"imageFile": "./tiles.png"
+			}
+		]
 	}
 }

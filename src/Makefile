@@ -55,6 +55,9 @@ neosd:
 	
 tosd:
 	make neosd && cp rom/scaling.neo /media/matt/7473-D0EE/ && umount /media/matt/7473-D0EE
+	
+mame:
+	cp rom/puzzledp.zip ~/mame/roms && mame -w puzzledp
 
 clean:
 	rm -f *.png *.o *~ $(ELF) tmp.* rom/*.*

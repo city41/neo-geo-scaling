@@ -17,8 +17,8 @@
 #define SCALE_Y_HALF 0xF80
 #define SCALE_Y_QUARTER 0xF40
 
-void basicScale(s16 x, s16 y, s16 scale);
+void basicScale(s16 x, s16 y, u8 height, s16 scale);
 void basicScaleTileZeroToEnd(s16 x, s16 y, s16 scale);
 
-void withTransparentBottomRow(s16 x, s16 y, s16 scale);
+void withTransparentBottomRow(s16 x, s16 y, u8 height, s16 scale);
 void withTransparentBottomRowTileZeroToEnd(s16 x, s16 y, s16 scale);

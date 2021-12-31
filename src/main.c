@@ -49,52 +49,83 @@ int main() {
 
     fix_print(12, 28, "Scaling sandbox");
 
-    s16 fpy = 13;
+    s16 fx = 2;
+    const s16 fy = 2;
 
-    // exporing the graphical artifacting beyond the scaled tiles
-    basicScale(16, 10, FULL_SCALE);
-    fix_print(2, fpy, "0");
+    const s16 y = 10;
+    s16 x = 16;
 
-    withTransparentBottomRow(48, 10, FULL_SCALE);
-    fix_print(6, fpy, "1");
+    s8 fps[1] = { '0' };
 
-    basicScale(80, 10, SCALE_Y_HALF);
-    fix_print(10, fpy, "2");
+    // sample 0
+    basicScale(x, y, 17, FULL_SCALE);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    withTransparentBottomRow(112, 10, SCALE_Y_HALF);
-    fix_print(14, fpy, "3");
+    // sample 1
+    basicScale(x, y, 4, SCALE_Y_HALF);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    basicScale(144, 10, SCALE_Y_QUARTER);
-    fix_print(18, fpy, "4");
+    // sample 2
+    withTransparentBottomRow(x, y, 4, SCALE_Y_HALF);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    basicScaleTileZeroToEnd(176, 10, SCALE_Y_QUARTER);
-    fix_print(22, fpy, "5");
+    // sample 3
+    basicScale(x, y, 4, SCALE_Y_QUARTER);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    withTransparentBottomRow(208, 10, SCALE_Y_QUARTER);
-    fix_print(26, fpy, "6");
+    // sample 4
+    basicScaleTileZeroToEnd(x, y, SCALE_Y_QUARTER);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    withTransparentBottomRowTileZeroToEnd(240, 10, SCALE_Y_QUARTER);
-    fix_print(30, fpy, "7");
+    // sample 5
+    withTransparentBottomRowTileZeroToEnd(x, y, SCALE_Y_QUARTER);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    // exploring what the "last line is transparent" can accomplish
-    fpy = 26;
-    withTransparentBottomRow(16, 122, FULL_SCALE);
-    fix_print(2, fpy, "8");
+    // sample 6
+    basicScale(x, y, 16, SCALE_Y_HALF);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    withTransparentBottomRow(48, 122, (0xF << 8) | 200);
-    fix_print(6, fpy, "9");
+    // sample 7
+    withTransparentBottomRow(x, y, 16, SCALE_Y_HALF);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    withTransparentBottomRow(80, 122, (0xF << 8) | 90);
-    fix_print(10, fpy, "10");
+    // sample 8
+    withTransparentBottomRow(x, y, 17, SCALE_Y_HALF);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
-    basicScale(112, 122, FULL_SCALE);
-    fix_print(14, fpy, "11");
-
-    basicScale(144, 122, (0xF << 8) | 200);
-    fix_print(18, fpy, "12");
-
-    basicScale(176, 122, (0xF << 8) | 90);
-    fix_print(22, fpy, "13");
+    // sample 9
+    basicScale(x, y, 24, SCALE_Y_QUARTER);
+    fix_print(fx, fy, fps);
+    x += 32;
+    fx += 4;
+    fps[0]++;
 
     for (;;) { }
 
