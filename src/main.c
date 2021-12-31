@@ -121,7 +121,7 @@ int main() {
     fps[0]++;
 
     // sample 9
-    basicScale(x, y, 24, SCALE_Y_QUARTER);
+    basicScale(x, y, 18, SCALE_Y_QUARTER);
     fix_print(fx, fy, fps);
     x += 32;
     fx += 4;

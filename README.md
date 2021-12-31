@@ -98,10 +98,10 @@ Running on real hardware: AES with Neo SD Pro, AES has LSPC-A0
 
 ### sample 9
 
-- character tiles 1 through 24
-- height set to 24
+- character tiles 1 through 17 plus the "transparent bottom line" tile at 18
+- height set to 18
 - scalings set to one quarter (0xF40)
-- character tiles 25 through 32 in the vram tilemap (scb1) untouched
+- character tiles 19 through 32 in the vram tilemap (scb1) untouched
 
 # Findings
 
