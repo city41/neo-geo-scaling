@@ -28,7 +28,7 @@ MAME 0.220
 
 ![mame screenshot](./mame2x.png)
 
-Running on real hardware: AES with Neo SD Pro
+Running on real hardware: AES with Neo SD Pro, AES has LSPC-A0
 
 ![real hardware screenshot](./realHardware.jpg)
 
