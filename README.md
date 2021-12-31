@@ -26,7 +26,7 @@ Notice that tile at index 255 is a checkerboard pattern, that plays a role in th
 
 MAME 0.220
 
-![mame screenshot](./mame.png)
+![mame screenshot](./mame2x.png)
 
 Running on real hardware: AES with Neo SD Pro
 
